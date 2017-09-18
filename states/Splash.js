@@ -16,7 +16,6 @@ Splash.prototype = {
     // thanks Kevin Macleod at http://incompetech.com/
     game.load.audio('dangerous', 'assets/bgm/menu.mp3');
     game.load.audio('run', 'assets/bgm/run.wav');
-    game.load.audio('exit', 'assets/bgm/Exit the Premises.mp3');
     game.load.audio('crash', 'assets/bgm/car-crash.mp3');
 
 
