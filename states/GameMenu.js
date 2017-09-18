@@ -13,6 +13,7 @@ GameMenu.prototype = {
       font: 'bold 40pt TheMinion',
       fill: '#F23332',
       align: 'center'
+      
     });
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
