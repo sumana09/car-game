@@ -9,7 +9,7 @@ GameMenu.prototype = {
   },
 
   init: function () {
-    this.titleText = game.make.text(game.world.centerX, 100, "Race Mania", {
+    this.titleText = game.make.text(game.world.centerX, 100, "Road Fighter", {
       font: 'bold 40pt TheMinion',
       fill: '#F23332',
       align: 'center'
