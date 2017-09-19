@@ -30,7 +30,7 @@ Splash.prototype = {
     game.load.spritesheet('buttons', 'assets/images/buttonsprite.png',119,35);
     game.load.image('enemy', 'assets/images/enemycar.png');
     game.load.image('fueltank', 'assets/images/fueltank.png');
-    game.load.spritesheet('enemycarsprite', 'assets/images/enemycar-sprite.png', 73,141,3);
+    game.load.spritesheet('enemycarsprite', 'assets/images/enemycar-sprite.png', 73,141,4);
   },
 
 

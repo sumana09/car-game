@@ -11,8 +11,7 @@ Game.prototype = {
     this.leftKey;
     this.rightKey;
     this.spaceKey;
-    this.upKey;
-    //this.game.paused = true;
+    this.upKey; 
     this.enemycarposX = [];
     this.enemycarposY = []; 
     this.enemycarposYIni = [];
@@ -70,13 +69,13 @@ Game.prototype = {
     game.input.keyboard.addKeyCapture([ Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR ]);
 
         // Road Background
-    this.background = game.add.tileSprite(0,0,546,935,'road-bg');
+    this.background = game.add.tileSprite(0,0,546,game.world.height,'road-bg');
 
     //this.buttonPlay = game.add.button(game.world.centerX,100,"buttons", this.clickMe, this,70,0);
     //this.buttonPlay.anchor.set(0.5,0.5);
 
     // My Car 
-    this.mycar = game.add.tileSprite(240,400,71,141, 'mycar');
+    this.mycar = game.add.tileSprite(240,game.world.height-200,71,141, 'mycar');
     game.physics.enable(this.mycar,Phaser.Physics.ARCADE);
     this.mycar.body.setSize(56, 130, 0, 0);
 
@@ -108,9 +107,9 @@ Game.prototype = {
 
   createEnemyCars:function(){
 
-    this.enemycarposX.push(240, 130, 347);
-    this.enemycarposYIni.push(-600, -800);
-    this.enemycarposY.push(390, 5); 
+    this.enemycarposX.push(240, 130, 347); 
+    //console.log(game.world.height-200);
+    this.enemycarposY.push(game.world.height-200, 5); 
 
     for (var x=0; x < 2; x++)
     {
@@ -126,7 +125,7 @@ Game.prototype = {
 
             this.enemycar.add(this.alien);
 
-            this.frame = game.rnd.integerInRange(0, 1);
+            this.frame = game.rnd.integerInRange(0, );
 
             //console.log(this.frame);
 
@@ -142,17 +141,16 @@ Game.prototype = {
 
   alienOut : function(alien){ 
     
-    xvalue = this.enemycarposX[game.rnd.integerInRange(0, 2)]; 
-    yvalue = this.enemycarposY[game.rnd.integerInRange(0, 2)];
+    xvalue = this.enemycarposX[game.rnd.integerInRange(0, 2)];  
     //console.log(yvalue);
     alien.reset(xvalue, -141);
     alien.body.velocity.y = this.enemycarVelocity; 
-    this.frame = game.rnd.integerInRange(0, 1);
+    this.frame = game.rnd.integerInRange(0, 3);
     alien.frame = this.frame;
     console.log(this.frame);
 
         if(score == this.velocityCounter*5){  
-          this.enemycarVelocity +=20; 
+          this.enemycarVelocity +=40; 
           console.log('velocity up');
           this.velocityCounter+=2;
           console.log(this.enemycarVelocity);
