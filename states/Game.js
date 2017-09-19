@@ -17,8 +17,10 @@ Game.prototype = {
     this.enemycarposY = []; 
     this.enemycarposYIni = [];
     this.value = 2;
+    this.velocityCounter = 2;
     this.fueltank,
-    this.speedText
+    this.speedText,
+    this.enemycarVelocity = 400;
   },
 
   addMenuOption: function(text, callback) { 
@@ -82,6 +84,8 @@ Game.prototype = {
     this.enemycar = game.add.group();
     this.enemycar.enableBody = true; 
     this.enemycar.PhysicsBodyType = Phaser.Physics.ARCADE; 
+    
+
 
     // create oponent cars
     this.createEnemyCars();
@@ -114,9 +118,19 @@ Game.prototype = {
         var xvalue = this.enemycarposX[x+1]
         var yvalue = this.enemycarposY[x];
 
-            console.log(yvalue);
+            //console.log(yvalue);
         
-            this.alien = this.enemycar.create(xvalue, yvalue, 'enemy');
+            //this.alien = this.enemycar.create(xvalue, 390, 'enemy');
+
+            this.alien = game.add.sprite(xvalue, yvalue, 'enemycarsprite');
+
+            this.enemycar.add(this.alien);
+
+            this.frame = game.rnd.integerInRange(0, 1);
+
+            //console.log(this.frame);
+
+            this.alien.frame = this.frame;
 
             //alien.name = 'enemy' + x.toString() + y.toString();
             this.alien.body.setSize(56, 130, 0, 0);
@@ -132,13 +146,25 @@ Game.prototype = {
     yvalue = this.enemycarposY[game.rnd.integerInRange(0, 2)];
     //console.log(yvalue);
     alien.reset(xvalue, -141);
-    alien.body.velocity.y = 400; 
+    alien.body.velocity.y = this.enemycarVelocity; 
+    this.frame = game.rnd.integerInRange(0, 1);
+    alien.frame = this.frame;
+    console.log(this.frame);
+
+        if(score == this.velocityCounter*5){  
+          this.enemycarVelocity +=20; 
+          console.log('velocity up');
+          this.velocityCounter+=2;
+          console.log(this.enemycarVelocity);
+        } 
+
     //console.log(this.score);
     
     // score count
     score += 1;
     this.scoreText.text = 'Score: ' + score;
     //this.fuelText.text = 'Fuel: ' + fuel;
+    
   },
 
   update : function(){ 
@@ -163,31 +189,26 @@ Game.prototype = {
             if(score == this.value*5){  
               this.speed = this.speed+2;
               this.value+=2;
-              console.log(this.value);
-              console.log(this.speed);
+              //console.log(this.value);
+              //console.log(this.speed);
 
               this.speedText = game.add.text(game.world.centerX, 30, 'Speed Up', {font: 'bold TheMinion', fontSize: '24px', fill: '#fff' });
               this.speedText.anchor.setTo(0.5);
               this.game.time.events.add(Phaser.Timer.SECOND * 1, this.removeText, this);
 
 
-              console.log('speed up');
-              this.alien.body.velocity.y = 415; 
+              //console.log('speed up');
+              /*this.alien.body.velocity.y = 450; 
+              console.log(this.alien.body.velocity.y);*/
               fuel-=10;
             }
         }
 
         
         if(this.spaceKey.isDown){  
-             
-             //this.buttonPlay = game.add.button(game.world.centerX,100,"buttons", this.clickMe, this,70,0);
-             //this.buttonPlay.anchor.set(0.5,0.5);
-             if(game.paused){
-              // Unpause the game
-                game.paused = false 
-             }else{
-                game.paused = true; 
-             }
+             game.paused = true; 
+             this.buttonPlay = game.add.button(game.world.centerX,100,"buttons", this.clickMe, this,70,0);
+             this.buttonPlay.anchor.set(0.5,0.5); 
         }
 
         game.physics.arcade.collide(this.mycar, this.enemycar, this.onCollission); 
