@@ -125,7 +125,7 @@ Game.prototype = {
 
             this.enemycar.add(this.alien);
 
-            this.frame = game.rnd.integerInRange(0, );
+            this.frame = game.rnd.integerInRange(0, 3);
 
             //console.log(this.frame);
 
@@ -150,7 +150,7 @@ Game.prototype = {
     console.log(this.frame);
 
         if(score == this.velocityCounter*5){  
-          this.enemycarVelocity +=40; 
+          this.enemycarVelocity +=25; 
           console.log('velocity up');
           this.velocityCounter+=2;
           console.log(this.enemycarVelocity);
