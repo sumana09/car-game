@@ -15,7 +15,7 @@ Splash.prototype = {
   loadBgm: function () {
     // thanks Kevin Macleod at http://incompetech.com/
     game.load.audio('dangerous', 'assets/bgm/menu.mp3');
-    game.load.audio('run', 'assets/bgm/run.wav');
+    game.load.audio('run', 'assets/bgm/run.mp3');
     game.load.audio('crash', 'assets/bgm/car-crash.mp3');
 
 
@@ -30,7 +30,7 @@ Splash.prototype = {
     game.load.spritesheet('buttons', 'assets/images/buttonsprite.png',119,35);
     game.load.image('enemy', 'assets/images/enemycar.png');
     game.load.image('fueltank', 'assets/images/fueltank.png');
-    game.load.spritesheet('enemycarsprite', 'assets/images/enemycar-sprite.png', 73,141,4);
+    game.load.spritesheet('enemycarsprite', 'assets/images/enemycar-sprite.png', 72,141,4);
   },
 
 
@@ -73,6 +73,7 @@ Splash.prototype = {
     game.state.add("GameMenu",GameMenu);
     game.state.add("Game",Game);
     game.state.add("GameOver",GameOver); 
+    game.state.add("GameOptions",GameOptions); 
   },
 
   addGameMusic: function () {

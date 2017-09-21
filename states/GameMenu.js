@@ -40,8 +40,8 @@ GameMenu.prototype = {
       music.play();
 
     });
-    this.addMenuOption('Options', function () {
-     //game.state.start("Options");
+    this.addMenuOption('Instructions', function () {
+     game.state.start("GameOptions");
     });
     this.addMenuOption('About', function () {
       // game.state.start("About");

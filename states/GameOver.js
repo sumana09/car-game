@@ -8,7 +8,7 @@ GameOver.prototype = {
 
   addMenuOption: function(text, callback) {
     var optionStyle = { font: '30pt TheMinion', fill: '#F23332', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
-    var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 300, text, optionStyle);
+    var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 360, text, optionStyle);
     txt.anchor.setTo(0.5);
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
@@ -39,9 +39,24 @@ GameOver.prototype = {
     this.scoreText.text = 'Score: ' + score;
     this.scoreText.anchor.setTo(0.5);
 
+   
+
+    if(score > highScore){
+        highScore = score;
+    }
+    
+    // Store
+    localStorage.setItem("high", highScore);
+    this.highscoreText = game.add.text(game.world.centerX, 370, 'High Score:', {font: 'bold 60pt TheMinion', fontSize: '40px', fill: '#F23332' });
+    this.highscoreText.text = 'High Score: ' + localStorage.getItem("high");
+    this.highscoreText.anchor.setTo(0.5);
+
+
     var text = game.add.text(game.world.centerX, 100, "Game Over", titleStyle);
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text.anchor.set(0.5);
+
+
     this.addMenuOption('Play Again', function (e) {
       this.game.state.start("Game");
       music = game.add.audio('run');
@@ -57,7 +72,6 @@ GameOver.prototype = {
       music.play();
       score = 0;
     
-    });
-    console.log(game.score);
+    }); 
   }
 };
