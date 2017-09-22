@@ -13,7 +13,7 @@ GameOver.prototype = {
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
     var onOver = function (target) {
-      target.fill = "#FEFFD5";
+      target.fill = "#BB3A31";
       target.stroke = "rgba(200,200,200,0.5)";
       txt.useHandCursor = true;
     };
