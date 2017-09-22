@@ -117,7 +117,7 @@ Game.prototype = {
         // Action for left key press -- move my car to left
         if(this.leftKey.isDown){   
             if(this.mycar.body.x >149){ 
-               this.mycar.body.velocity.x = -400;  
+               this.mycar.body.velocity.x = -500;  
             }
         }
 
@@ -125,7 +125,7 @@ Game.prototype = {
         if(this.rightKey.isDown){ 
             if(this.mycar.body.x < game.world.width-215){
                //this.mycar.body.velocity.x = -50;  
-               this.mycar.body.velocity.x = 400; 
+               this.mycar.body.velocity.x = 500; 
                //this.mycar.body.x += 100;
 
                game.add.tween(this.mycar).to({x:100}, 500, Phaser.linear);
@@ -161,7 +161,7 @@ Game.prototype = {
             //this.increaseVelocity = this.currentspeed + 60;
 
             for(i=0; i<3 ; i++){
-              this.enemycarVelocity[i]+=20;
+              this.enemycarVelocity[i]+=15;
               //console.log(this.enemycarVelocity[i]);
             }
 
